@@ -52,13 +52,13 @@ export const brandConfig: BrandConfig = {
   social: {
     instagram: "https://www.instagram.com/brumeligourmet/",
     instagramHandle: "@brumeligourmet",
-    // WhatsApp temporariamente apontando para canal direto no Instagram conforme diretrizes
-    whatsapp: undefined,
-    pedidosLink: "https://www.instagram.com/brumeligourmet/",
-    pedidosText: "Fazer pedido via Instagram",
+    whatsapp: "5519996417576",
+    whatsappFormatted: "(19) 99641-7576",
+    pedidosLink: "https://wa.me/5519996417576?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20na%20Brumeli%20Gourmet!",
+    pedidosText: "Fazer pedido via WhatsApp",
   },
   address: "Atendimento & Deliveries Gourmet",
-  hours: "Consulte horários e disponibilidade no Instagram",
+  hours: "Consulte horários e disponibilidade no WhatsApp",
   features: [
     {
       title: "Produzido com amor",

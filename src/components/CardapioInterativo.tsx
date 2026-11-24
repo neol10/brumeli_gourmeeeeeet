@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { menuCategories, torreBatataConfig } from "../data/menu";
+import { menuCategories, torreBatataConfig, MenuItem } from "../data/menu";
 import { brandConfig } from "../data/brand";
-import { Download, ArrowUpRight, Check, Sparkles } from "lucide-react";
+import { Download, ArrowUpRight, Check, Sparkles, MessageCircle } from "lucide-react";
 
 export default function CardapioInterativo() {
   const [activeCategoryId, setActiveCategoryId] = useState<string>("batatas");
@@ -17,6 +17,21 @@ export default function CardapioInterativo() {
 
   const currentTorrePrice = torreBatataConfig.prices[torreWeight][torreFlavor];
   const currentTorreFlavorInfo = torreBatataConfig.flavors.find((f) => f.id === torreFlavor);
+
+  const getTorreWhatsAppLink = () => {
+    const text = encodeURIComponent(
+      `Olá! Gostaria de pedir uma Torre de Batata:\n- Tamanho: ${torreWeight}\n- Sabor: ${currentTorreFlavorInfo?.name}\n- Valor: R$ ${currentTorrePrice.toFixed(2).replace(".", ",")}`
+    );
+    return `https://wa.me/${brandConfig.social.whatsapp || "5519996417576"}?text=${text}`;
+  };
+
+  const getItemWhatsAppLink = (item: MenuItem, categoryName: string) => {
+    const priceText = item.formattedPrice ? ` (${item.formattedPrice})` : "";
+    const text = encodeURIComponent(
+      `Olá! Gostaria de pedir do cardápio Brumeli Gourmet:\n- Categoria: ${categoryName}\n- Item: ${item.name}${priceText}`
+    );
+    return `https://wa.me/${brandConfig.social.whatsapp || "5519996417576"}?text=${text}`;
+  };
 
   // Efeito de transição suave ao alternar categoria
   const [contentKey, setContentKey] = useState<string>("batatas");
@@ -194,12 +209,13 @@ export default function CardapioInterativo() {
                   </div>
 
                   <a
-                    href={`${brandConfig.social.pedidosLink}`}
+                    href={getTorreWhatsAppLink()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-full text-xs font-sans font-medium tracking-wider uppercase bg-terracota hover:bg-terracota-hover text-creme-100 transition-colors shadow-sm"
+                    className="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl text-xs sm:text-sm font-sans font-semibold tracking-wider uppercase bg-terracota hover:bg-terracota-hover text-creme-100 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 active:translate-y-0"
                   >
-                    <span>Pedir esta Torre no Instagram</span>
+                    <MessageCircle className="w-4 h-4 fill-current/20" />
+                    <span>Pedir no WhatsApp</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </a>
                 </div>
@@ -209,38 +225,38 @@ export default function CardapioInterativo() {
             </div>
           </div>
         ) : (
-          /* Grid de Itens do Cardápio Padrão */
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          /* Grid de Itens do Cardápio Padrão - Design Destacado e Atraente */
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-7">
             {activeCategory.items.map((item) => (
               <div
                 key={item.id}
-                className="group p-6 rounded-2xl bg-creme-50/70 hover:bg-creme-50 border border-marrom/10 hover:border-marrom/20 transition-all duration-300 shadow-sm flex flex-col justify-between"
+                className="group relative p-6 sm:p-7 rounded-2xl bg-white/90 hover:bg-white border-2 border-marrom/10 hover:border-terracota/40 transition-all duration-300 shadow-[0_4px_20px_rgba(43,26,19,0.06)] hover:shadow-[0_12px_32px_rgba(184,81,42,0.14)] flex flex-col justify-between transform hover:-translate-y-1"
               >
                 <div>
-                  <div className="flex items-start justify-between gap-4 mb-2">
-                    <h4 className="font-serif text-xl sm:text-2xl text-marrom font-medium leading-snug group-hover:text-terracota transition-colors">
+                  <div className="flex items-start justify-between gap-4 mb-3">
+                    <h4 className="font-serif text-xl sm:text-2xl text-marrom font-semibold leading-snug group-hover:text-terracota transition-colors">
                       {item.name}
                     </h4>
                     {item.formattedPrice && (
-                      <span className="font-serif text-lg sm:text-xl font-semibold text-terracota whitespace-nowrap">
+                      <span className="shrink-0 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-terracota to-terracota-hover text-creme-100 font-serif text-base sm:text-lg font-bold shadow-sm whitespace-nowrap tracking-tight">
                         {item.formattedPrice}
                       </span>
                     )}
                   </div>
 
                   {item.description && (
-                    <p className="text-xs sm:text-sm text-marrom/75 font-sans leading-relaxed">
+                    <p className="text-xs sm:text-sm text-marrom/80 font-sans leading-relaxed">
                       {item.description}
                     </p>
                   )}
 
                   {/* Variações e opções disponíveis */}
                   {item.options && item.options.length > 0 && (
-                    <div className="mt-3 flex flex-wrap gap-1.5">
+                    <div className="mt-3.5 flex flex-wrap gap-1.5">
                       {item.options.map((opt) => (
                         <span
                           key={opt}
-                          className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-sans bg-creme-200/60 text-marrom/80 border border-marrom/10"
+                          className="inline-block px-2.5 py-0.5 rounded-md text-[10px] font-sans font-medium bg-creme-200/70 text-marrom/90 border border-marrom/15"
                         >
                           {opt}
                         </span>
@@ -249,17 +265,19 @@ export default function CardapioInterativo() {
                   )}
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-marrom/10 flex items-center justify-between">
-                  <span className="text-[10px] uppercase tracking-wider text-marrom/50 font-sans">
+                <div className="mt-5 pt-4 border-t border-marrom/10 flex items-center justify-between">
+                  <span className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-marrom/60 font-sans font-semibold">
+                    <Sparkles className="w-3 h-3 text-terracota" />
                     Artesanal Brumeli
                   </span>
                   <a
-                    href={brandConfig.social.pedidosLink}
+                    href={getItemWhatsAppLink(item, activeCategory.name)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-sans font-medium text-terracota hover:text-marrom transition-colors"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-sans font-semibold text-terracota bg-terracota/10 hover:bg-terracota hover:text-white transition-all duration-200 shadow-xs"
                   >
-                    <span>Pedir</span>
+                    <MessageCircle className="w-3.5 h-3.5" />
+                    <span>Pedir no WhatsApp</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </a>
                 </div>

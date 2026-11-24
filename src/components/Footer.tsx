@@ -91,7 +91,7 @@ export default function Footer() {
               Pedidos & Informações
             </span>
             <p className="text-xs sm:text-sm text-creme-200/75 leading-relaxed">
-              Pedidos realizados diretamente através do direct oficial no Instagram para atendimento ágil e personalizado.
+              Pedidos realizados diretamente através do nosso WhatsApp oficial para atendimento ágil e personalizado.
             </p>
             <div className="pt-2">
               <a
@@ -100,7 +100,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-sans font-medium uppercase tracking-wider bg-terracota hover:bg-terracota-hover text-creme-100 transition-colors"
               >
-                <span>Fazer pedido agora</span>
+                <span>Fazer pedido via WhatsApp</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>

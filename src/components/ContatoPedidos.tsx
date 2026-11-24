@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { brandConfig } from "../data/brand";
-import { ArrowUpRight, Clock, MapPin } from "lucide-react";
+import { ArrowUpRight, Clock, MapPin, MessageCircle } from "lucide-react";
 
 function InstagramIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -46,7 +46,7 @@ export default function ContatoPedidos() {
             </h2>
 
             <p className="text-sm sm:text-base text-creme-200/80 font-sans font-light max-w-lg mb-8 leading-relaxed">
-              Atendemos diretamente pelo nosso perfil oficial no Instagram. Envie sua mensagem, tire dúvidas sobre o cardápio e faça seu pedido.
+              Atendemos diretamente pelo nosso WhatsApp oficial. Envie sua mensagem, tire dúvidas sobre o cardápio e faça seu pedido com rapidez e atenção.
             </p>
 
             {/* Ações de Contato Direto com Pulso e Shimmer */}
@@ -55,11 +55,21 @@ export default function ContatoPedidos() {
                 href={brandConfig.social.pedidosLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-xs sm:text-sm font-sans font-medium tracking-wider uppercase bg-terracota hover:bg-terracota-hover text-creme-100 transition-all duration-300 shadow-xl transform hover:-translate-y-1 active:translate-y-0 animate-pulse-glow animate-shimmer-sweep"
+                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-xs sm:text-sm font-sans font-semibold tracking-wider uppercase bg-terracota hover:bg-terracota-hover text-creme-100 transition-all duration-300 shadow-xl transform hover:-translate-y-1 active:translate-y-0 animate-pulse-glow animate-shimmer-sweep"
+              >
+                <MessageCircle className="w-5 h-5 fill-current/20" />
+                <span>Pedir no WhatsApp {brandConfig.social.whatsappFormatted}</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+
+              <a
+                href={brandConfig.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-4 rounded-full text-xs sm:text-sm font-sans font-medium tracking-wider uppercase bg-creme-100/10 hover:bg-creme-100/20 text-creme-100 border border-creme-100/20 transition-all duration-300"
               >
                 <InstagramIcon className="w-4 h-4" />
-                <span>Pedir no Instagram {brandConfig.social.instagramHandle}</span>
-                <ArrowUpRight className="w-4 h-4" />
+                <span>Instagram {brandConfig.social.instagramHandle}</span>
               </a>
             </div>
 
