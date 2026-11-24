@@ -139,6 +139,20 @@
   .animate-soft-dot {
     animation: softPulseDot 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
+
+  /* Estilos de Cardápio Bistrô Premium */
+  .bistro-card {
+    background-color: #38251B;
+    background-image: radial-gradient(circle at 30% 0%, rgba(215, 171, 124, 0.08), transparent 60%);
+    border: 1px solid rgba(215, 171, 124, 0.22);
+    box-shadow: 0 4px 18px rgba(36, 24, 16, 0.12);
+  }
+
+  .bistro-card:hover {
+    border-color: rgba(215, 171, 124, 0.45);
+    box-shadow: 0 10px 28px -4px rgba(36, 24, 16, 0.22), 0 0 0 1px rgba(215, 171, 124, 0.15);
+    transform: translateY(-2px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
