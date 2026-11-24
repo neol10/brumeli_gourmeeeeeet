@@ -53,10 +53,18 @@ export default function Header() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-serif text-2xl md:text-[1.75rem] font-medium tracking-tight text-marrom leading-none">
+              <span
+                className={`font-serif text-2xl md:text-[1.75rem] font-medium tracking-tight leading-none transition-colors duration-300 ${
+                  scrolled ? "text-marrom" : "text-[#FFF3E2] drop-shadow-sm"
+                }`}
+              >
                 BRUMELI
               </span>
-              <span className="text-[9px] uppercase tracking-[0.25em] text-marrom/70 font-sans font-medium mt-1">
+              <span
+                className={`text-[9px] uppercase tracking-[0.25em] font-sans font-medium mt-1 transition-colors duration-300 ${
+                  scrolled ? "text-marrom/70" : "text-[#D7AB7C]"
+                }`}
+              >
                 Gourmet & Experiências
               </span>
             </div>
@@ -68,7 +76,11 @@ export default function Header() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-xs font-sans tracking-[0.14em] uppercase text-marrom/80 hover:text-terracota transition-colors duration-200 relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-terracota hover:after:w-full after:transition-all after:duration-300 whitespace-nowrap"
+                className={`text-xs font-sans tracking-[0.14em] uppercase transition-colors duration-200 relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] hover:after:w-full after:transition-all after:duration-300 whitespace-nowrap ${
+                  scrolled
+                    ? "text-marrom/80 hover:text-terracota after:bg-terracota"
+                    : "text-[#FFF3E2]/90 hover:text-[#D7AB7C] after:bg-[#D7AB7C] drop-shadow-sm"
+                }`}
               >
                 {link.name}
               </Link>
@@ -81,7 +93,11 @@ export default function Header() {
               href={brandConfig.social.pedidosLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-sans font-medium tracking-wider uppercase bg-marrom text-creme-100 hover:bg-terracota transition-all duration-300 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 active:translate-y-0 whitespace-nowrap animate-shimmer-sweep"
+              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-sans font-medium tracking-wider uppercase transition-all duration-300 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 active:translate-y-0 whitespace-nowrap animate-shimmer-sweep ${
+                scrolled
+                  ? "bg-marrom text-creme-100 hover:bg-terracota"
+                  : "bg-[#FFF3E2] text-[#241810] hover:bg-white"
+              }`}
             >
               <span>Fazer pedido</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -91,7 +107,9 @@ export default function Header() {
           {/* Botão Mobile/Tablet */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-marrom hover:text-terracota focus:outline-none"
+            className={`lg:hidden p-2 focus:outline-none transition-colors duration-300 ${
+              scrolled ? "text-marrom hover:text-terracota" : "text-[#FFF3E2] hover:text-[#D7AB7C]"
+            }`}
             aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
