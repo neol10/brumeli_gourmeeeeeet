@@ -19,51 +19,51 @@ export default function GsapAnimations() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // 1. Entrada Editorial do Hero (Load inicial)
+      // 1. Entrada Editorial do Hero e Header (Load inicial, sem interferir no vídeo)
       const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
       heroTl
         .fromTo(
-          "#hero h1",
-          { opacity: 0, y: 45, filter: "blur(4px)" },
-          { opacity: 1, y: 0, filter: "blur(0px)", duration: 1.2, delay: 0.15 }
+          "header",
+          { opacity: 0, y: -12 },
+          { opacity: 1, y: 0, duration: 0.7 }
         )
         .fromTo(
-          "#hero p",
-          { opacity: 0, y: 25 },
-          { opacity: 1, y: 0, duration: 0.9 },
-          "-=0.7"
+          "#hero .hero-reveal-eyebrow",
+          { opacity: 0, y: 18 },
+          { opacity: 1, y: 0, duration: 0.7 },
+          "-=0.4"
         )
         .fromTo(
-          "#hero .flex.flex-wrap.items-center.gap-4 a",
-          { opacity: 0, y: 20, scale: 0.96 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.8, stagger: 0.15 },
+          "#hero .hero-reveal-title",
+          { opacity: 0, y: 36 },
+          { opacity: 1, y: 0, duration: 1.0 },
+          "-=0.45"
+        )
+        .fromTo(
+          "#hero .hero-reveal-text",
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.8 },
+          "-=0.6"
+        )
+        .fromTo(
+          "#hero .hero-reveal-cta a",
+          { opacity: 0, y: 16, scale: 0.97 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.7, stagger: 0.12 },
           "-=0.5"
         )
         .fromTo(
-          "#hero .lg\\:col-span-6:last-child > div",
-          { opacity: 0, scale: 0.94, y: 30 },
-          { opacity: 1, scale: 1, y: 0, duration: 1.3, ease: "power2.out" },
-          "-=1.1"
+          "#hero .hero-reveal-badge",
+          { opacity: 0, y: 14 },
+          { opacity: 1, y: 0, duration: 0.65 },
+          "-=0.45"
         )
         .fromTo(
-          "#hero .grid.grid-cols-1.sm\\:grid-cols-3 > div",
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.8, stagger: 0.15 },
-          "-=0.6"
+          "#hero .hero-diff-item",
+          { opacity: 0, y: 16 },
+          { opacity: 1, y: 0, duration: 0.7, stagger: 0.12 },
+          "-=0.45"
         );
-
-      // 2. Parallax suave na fotografia do Hero durante a rolagem
-      gsap.to("#hero .lg\\:col-span-6:last-child img", {
-        yPercent: 10,
-        ease: "none",
-        scrollTrigger: {
-          trigger: "#hero",
-          start: "top top",
-          end: "bottom top",
-          scrub: 1,
-        },
-      });
 
       // 3. Seção Especialidades: Revelação dos Cards em Stagger
       ScrollTrigger.batch("#especialidades .grid > div", {

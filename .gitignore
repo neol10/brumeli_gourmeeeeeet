@@ -37,4 +37,4 @@ next-env.d.ts
 cardapio_extraido.txt
 imagens_pdf/
 ref_*.jpg
-*.mp4
+/*.mp4
