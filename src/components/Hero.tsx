@@ -319,15 +319,21 @@ export default function Hero() {
         )}
 
         {/* Vinheta Superior Sutil apenas para legibilidade do Header */}
-        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#1A110B]/65 via-[#1A110B]/25 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#140C07]/60 via-[#140C07]/20 to-transparent pointer-events-none" />
 
-        {/* Vinheta Inferior Localizada apenas para leitura das frases cinematográficas (preserva o produto livre) */}
-        <div className="absolute inset-x-0 bottom-0 h-[44%] md:h-[40%] bg-gradient-to-t from-[#1A110B]/85 via-[#1A110B]/35 to-transparent pointer-events-none" />
+        {/* Degradê Cinematográfico Inferior Suave (0% topo -> 16% centro -> 58% textos -> 76% base) */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(20, 12, 7, 0) 0%, rgba(20, 12, 7, 0) 35%, rgba(20, 12, 7, 0.16) 52%, rgba(20, 12, 7, 0.58) 76%, rgba(20, 12, 7, 0.76) 100%)",
+          }}
+        />
 
-        {/* Scrim Sutil Ativado apenas no Momento 04 para legibilidade AAA dos botões finais */}
+        {/* Scrim Sutil Ativado apenas no Momento 04 para legibilidade AAA da composição final */}
         <div
           ref={finalScrimRef}
-          className="absolute inset-0 bg-[#1A110B]/45 pointer-events-none opacity-0"
+          className="absolute inset-0 bg-[#140C07]/55 pointer-events-none opacity-0"
         />
       </div>
 
@@ -339,20 +345,29 @@ export default function Hero() {
           ref={moment1Ref}
           className="absolute inset-x-6 md:inset-x-12 bottom-10 md:bottom-14 flex flex-col items-center text-center"
         >
-          <span className="text-[11px] md:text-xs uppercase tracking-[0.28em] text-[#D7AB7C] font-sans font-semibold mb-3 drop-shadow-sm">
+          <span
+            className="text-xs sm:text-sm uppercase tracking-[0.28em] text-[#F2D3A4] font-sans font-bold mb-3"
+            style={{ textShadow: "0 2px 12px rgba(14, 8, 4, 0.9)" }}
+          >
             Brumeli Gourmet
           </span>
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl font-medium tracking-tight text-[#FFF3E2] leading-[0.98] drop-shadow-[0_4px_24px_rgba(26,17,11,0.75)] max-w-3xl">
-            Mais que uma batata<span className="italic text-[#D7AB7C]">...</span>
+          <h1
+            className="font-serif text-[2.65rem] sm:text-5xl md:text-7xl font-semibold tracking-tight text-[#FFF8ED] leading-[0.98] max-w-3xl"
+            style={{ textShadow: "0 3px 22px rgba(14, 8, 4, 0.85), 0 1px 4px rgba(14, 8, 4, 0.95)" }}
+          >
+            Mais que uma batata<span className="italic text-[#F2D3A4]">...</span>
           </h1>
 
           {/* Indicador destacado ROLE PARA EXPLORAR */}
-          <div className="mt-7 md:mt-9 flex flex-col items-center gap-2">
-            <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-[#FFF3E2]/90 font-sans font-semibold">
+          <div className="mt-7 md:mt-9 flex flex-col items-center gap-2.5">
+            <span
+              className="text-[13px] sm:text-sm uppercase tracking-[0.26em] text-[#FFF8ED] font-sans font-bold"
+              style={{ textShadow: "0 2px 12px rgba(14, 8, 4, 0.95)" }}
+            >
               Role para explorar
             </span>
-            <div className="w-8 h-8 rounded-full border border-[#D7AB7C]/60 bg-[#241810]/50 flex items-center justify-center text-[#D7AB7C] animate-bounce">
-              <ArrowDown className="w-3.5 h-3.5" />
+            <div className="w-10 h-10 rounded-full border-2 border-[#F2D3A4]/80 bg-[#140C07]/40 flex items-center justify-center text-[#FFF8ED] animate-bounce shadow-[0_4px_14px_rgba(14,8,4,0.6)]">
+              <ArrowDown className="w-5 h-5 stroke-[2.25]" />
             </div>
           </div>
         </div>
@@ -362,10 +377,13 @@ export default function Hero() {
           ref={moment2Ref}
           className="absolute inset-x-6 md:inset-x-12 bottom-12 md:bottom-16 flex flex-col items-center md:items-start text-center md:text-left opacity-0"
         >
-          <span className="w-10 h-[1px] bg-[#D7AB7C] mb-4" />
-          <h2 className="font-serif text-4xl sm:text-5xl md:text-7xl font-medium tracking-tight text-[#FFF3E2] leading-[0.98] drop-shadow-[0_4px_24px_rgba(26,17,11,0.8)] max-w-2xl">
+          <span className="w-12 h-[1.5px] bg-[#F2D3A4] mb-4 shadow-sm" />
+          <h2
+            className="font-serif text-[2.65rem] sm:text-5xl md:text-7xl font-semibold tracking-tight text-[#FFF8ED] leading-[0.98] max-w-2xl"
+            style={{ textShadow: "0 3px 22px rgba(14, 8, 4, 0.85), 0 1px 4px rgba(14, 8, 4, 0.95)" }}
+          >
             Uma experiência <br />
-            <span className="italic text-[#D7AB7C]">em cada detalhe.</span>
+            <span className="italic text-[#F2D3A4]">em cada detalhe.</span>
           </h2>
         </div>
 
@@ -374,22 +392,25 @@ export default function Hero() {
           ref={moment3Ref}
           className="absolute inset-x-6 md:inset-x-12 bottom-12 md:bottom-16 flex flex-col items-center md:items-end text-center md:text-right opacity-0"
         >
-          <span className="w-10 h-[1px] bg-[#D7AB7C] mb-4" />
-          <h2 className="font-serif text-4xl sm:text-5xl md:text-7xl font-medium tracking-tight text-[#FFF3E2] leading-[0.98] drop-shadow-[0_4px_24px_rgba(26,17,11,0.8)] max-w-2xl">
+          <span className="w-12 h-[1.5px] bg-[#F2D3A4] mb-4 shadow-sm" />
+          <h2
+            className="font-serif text-[2.65rem] sm:text-5xl md:text-7xl font-semibold tracking-tight text-[#FFF8ED] leading-[0.98] max-w-2xl"
+            style={{ textShadow: "0 3px 22px rgba(14, 8, 4, 0.85), 0 1px 4px rgba(14, 8, 4, 0.95)" }}
+          >
             Sabores que despertam <br />
-            <span className="italic text-[#D7AB7C]">felicidade.</span>
+            <span className="italic text-[#F2D3A4]">felicidade.</span>
           </h2>
         </div>
 
-        {/* MOMENTO 04 — 75% a 100%: Revelação Final da Marca e CTAs */}
+        {/* MOMENTO 04 — 75% a 100%: Revelação Final da Marca e CTAs (sem caixas/glassmorphism) */}
         <div
           ref={moment4Ref}
-          className="absolute inset-0 flex items-center justify-center px-4 sm:px-6 opacity-0 pointer-events-none"
+          className="absolute inset-0 flex items-center justify-center px-6 opacity-0 pointer-events-none"
         >
-          <div className="max-w-xl w-full text-center bg-[#241810]/70 backdrop-blur-sm border border-[#D7AB7C]/25 rounded-xl p-7 sm:p-10 shadow-2xl">
+          <div className="max-w-xl w-full text-center">
             {/* Logo Oficial BRUMELI */}
             <div className="flex flex-col items-center mb-5">
-              <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-[#D7AB7C]/60 shadow-lg mb-3">
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-[#F2D3A4]/80 shadow-[0_6px_24px_rgba(14,8,4,0.65)] mb-3">
                 <Image
                   src="/images/logo.webp"
                   alt="Logo Oficial Brumeli Gourmet"
@@ -398,18 +419,27 @@ export default function Hero() {
                   className="object-cover"
                 />
               </div>
-              <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.28em] text-[#D7AB7C] font-sans font-semibold">
+              <span
+                className="text-xs uppercase tracking-[0.28em] text-[#F2D3A4] font-sans font-bold"
+                style={{ textShadow: "0 2px 10px rgba(14, 8, 4, 0.9)" }}
+              >
                 By {brandConfig.founder}
               </span>
             </div>
 
             {/* Título Final */}
-            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight text-[#FFF3E2] leading-[0.96] mb-4">
-              Sua dose de <span className="italic text-[#D7AB7C]">felicidade.</span>
+            <h2
+              className="font-serif text-[2.75rem] sm:text-5xl md:text-6xl font-semibold tracking-tight text-[#FFF8ED] leading-[0.96] mb-4"
+              style={{ textShadow: "0 3px 22px rgba(14, 8, 4, 0.85), 0 1px 4px rgba(14, 8, 4, 0.95)" }}
+            >
+              Sua dose de <span className="italic text-[#F2D3A4]">felicidade.</span>
             </h2>
 
             {/* Subtítulo */}
-            <p className="text-sm sm:text-base md:text-lg text-[#FFF3E2]/85 font-sans font-light max-w-md mx-auto leading-relaxed mb-7">
+            <p
+              className="text-sm sm:text-base md:text-lg text-[#FFF8ED]/95 font-sans font-normal max-w-md mx-auto leading-relaxed mb-8"
+              style={{ textShadow: "0 2px 14px rgba(14, 8, 4, 0.9)" }}
+            >
               {brandConfig.heroText}
             </p>
 
@@ -417,7 +447,7 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5">
               <Link
                 href="#cardapio"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 rounded-full text-xs sm:text-sm font-sans font-semibold tracking-wider uppercase bg-[#FFF3E2] text-[#241810] hover:bg-white transition-all duration-200 shadow-md hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 rounded-full text-xs sm:text-sm font-sans font-semibold tracking-wider uppercase bg-[#FFF8ED] text-[#241810] hover:bg-white transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0"
               >
                 Explorar cardápio
               </Link>
@@ -426,7 +456,7 @@ export default function Hero() {
                 href={brandConfig.social.pedidosLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-xs sm:text-sm font-sans font-semibold tracking-wider uppercase bg-terracota text-[#FFF3E2] hover:bg-terracota-hover transition-all duration-200 shadow-md hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 animate-pulse-glow animate-shimmer-sweep"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-xs sm:text-sm font-sans font-semibold tracking-wider uppercase bg-terracota text-[#FFF8ED] hover:bg-terracota-hover transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 animate-pulse-glow animate-shimmer-sweep"
               >
                 <span>Fazer pedido</span>
                 <ArrowUpRight className="w-4 h-4" />
