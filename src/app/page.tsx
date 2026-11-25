@@ -1,3 +1,4 @@
+import SitePreloader from "../components/common/SitePreloader";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Especialidades from "../components/Especialidades";
@@ -12,6 +13,7 @@ import GsapAnimations from "../components/GsapAnimations";
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col bg-creme-100">
+      <SitePreloader />
       <GsapAnimations />
       <Header />
       <Hero />

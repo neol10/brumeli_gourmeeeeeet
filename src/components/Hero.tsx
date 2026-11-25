@@ -6,6 +6,10 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { brandConfig } from "../data/brand";
+import {
+  getCachedHeroVideoUrl,
+  subscribeHeroVideoReady,
+} from "../lib/preloadAssets";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 
 export default function Hero() {
@@ -27,6 +31,7 @@ export default function Hero() {
   const rafIdRef = useRef<number | null>(null);
 
   const [videoSrc, setVideoSrc] = useState<string | null>(null);
+  const [cachedBlobUrl, setCachedBlobUrl] = useState<string | null>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState<boolean>(false);
   const [videoFailed, setVideoFailed] = useState<boolean>(false);
 
@@ -40,12 +45,13 @@ export default function Hero() {
       setPrefersReducedMotion(reduced);
       if (reduced) {
         setVideoSrc(null);
+        setCachedBlobUrl(null);
       } else {
-        setVideoSrc(
-          desktopQuery.matches
-            ? "/videos/hero-desktop-scrub.mp4"
-            : "/videos/hero-mobile-scrub.mp4"
-        );
+        const nextPath = desktopQuery.matches
+          ? "/videos/hero-desktop-scrub.mp4"
+          : "/videos/hero-mobile-scrub.mp4";
+        setVideoSrc(nextPath);
+        setCachedBlobUrl(getCachedHeroVideoUrl(nextPath));
       }
     };
 
@@ -53,9 +59,19 @@ export default function Hero() {
     reducedQuery.addEventListener("change", updateMedia);
     desktopQuery.addEventListener("change", updateMedia);
 
+    const unsubscribe = subscribeHeroVideoReady((sourcePath, blobUrl) => {
+      const expected = desktopQuery.matches
+        ? "/videos/hero-desktop-scrub.mp4"
+        : "/videos/hero-mobile-scrub.mp4";
+      if (sourcePath === expected) {
+        setCachedBlobUrl(blobUrl);
+      }
+    });
+
     return () => {
       reducedQuery.removeEventListener("change", updateMedia);
       desktopQuery.removeEventListener("change", updateMedia);
+      unsubscribe();
     };
   }, []);
 
@@ -298,7 +314,7 @@ export default function Hero() {
           <video
             key={videoSrc}
             ref={videoRef}
-            src={videoSrc}
+            src={cachedBlobUrl || videoSrc}
             poster="/images/batata-recheada-1.webp"
             muted
             playsInline
